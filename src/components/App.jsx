@@ -7,7 +7,6 @@ import Filter from './Filter/Filter';
 
 import { addContact,deleteContact } from 'redux/contacts/contacts-slice';
 import { setFilter } from 'redux/filter/filter-slice';
-
 import { getFilter } from 'redux/filter/filter-selectors';
 import { getContacts,getFilteredContacts } from 'redux/contacts/contacts-selectors';
 
@@ -40,20 +39,10 @@ export const App = () => {
     dispatch(action)
   };
 
-  // const filterContactsHandler = () => {
-  //   if (filter === '') {
-  //     return contacts;
-  //   }
-
-  //   const normalizedFilter = filter.toLowerCase();
-  //   return contacts.filter(item =>
-  //     item.name.toLowerCase().includes(normalizedFilter)
-  //   );
-  // };
-
   const onInputChange = event => {
     const action = setFilter(event.target.value)
-  dispatch(action)}
+    dispatch(action)
+  }
 
   return (
     <div className={css.App}>
@@ -63,9 +52,7 @@ export const App = () => {
       <p className={css.text}>Find contacts by name</p>
       <Filter name={filter} onChange={onInputChange} />
       <ContactList
-        items={filteredContacts} deleteContactHandler={deleteContactHandler}
-        
-      />
+        items={filteredContacts} deleteContactHandler={deleteContactHandler} />
     </div>
   );
 };
