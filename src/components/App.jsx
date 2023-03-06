@@ -1,21 +1,29 @@
-import { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
+// import { useState, useEffect } from 'react';
+// import { nanoid } from 'nanoid';
+
+import { useSelector, useDispatch} from 'react-redux';
+
 import ContactList from './ContactList/ContactList';
 import ContactFrom from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 
+import { addContact,deleteContact } from 'redux/contacts/contacts-slice';
+import { setFilter } from 'redux/filter/filter-slice';
+
+import { getContacts,getFilteredContacts } from 'redux/contacts/contacts-selectors';
+
 import css from './App.module.css';
 
 export const App = () => {
-  const [contacts, setContacts] = useState(() => {
-    const locatStoreItems = JSON.parse(localStorage.getItem('contacts'));
-    return locatStoreItems?.length ? locatStoreItems : [];
-  });
-  const [filter, setFilter] = useState('');
+  // const [contacts, setContacts] = useState(() => {
+  //   const locatStoreItems = JSON.parse(localStorage.getItem('contacts'));
+  //   return locatStoreItems?.length ? locatStoreItems : [];
+  // });
+  // const [filter, setFilter] = useState('');
 
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  // useEffect(() => {
+  //   localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
 
   const addContactHandler = ({ name, number }) => {
     if (dublicatedHandler({ name })) {
